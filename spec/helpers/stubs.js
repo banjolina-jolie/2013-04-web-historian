@@ -40,13 +40,3 @@ exports.Response = function() {
     self.data = data;
   }
 };
-
-exports.FileReadStream = function(streamData){
-  this.addListener = this.on = function(e, cb){
-    if(e === "data"){
-      cb(streamData);
-    } else if(e === "end"){
-      cb();
-    }
-  };
-};

@@ -1,4 +1,4 @@
-exports.readUrls = function(urlSource, cb){
+exports.readUrls = function(filePath, cb){
   // fixme
 };
 

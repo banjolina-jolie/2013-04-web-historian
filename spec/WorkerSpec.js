@@ -5,19 +5,16 @@ describe("html fetcher helpers", function(){
 
   it("should have a 'readUrls' function", function(){
     var urlArray = ["example1.com", "example2.com"];
-    var resultUrls;
 
-    var urlSource = new stubs.FileReadStream(urlArray.join("\n"));
+    fs.writeFileSync(__dirname + "testdata/sites.txt", urlArray.join("\n"));
 
     var resultArray;
     var result = htmlFetcherHelpers.readUrls(urlSource, function(urls){
-      // console.log("reading urls; urls is " + urls);
       resultArray = urls;
     });
 
     waits(200);
     runs(function(){
-      // console.log("in expectation")
       expect(resultArray).toEqual(urlArray);
     });
   });
