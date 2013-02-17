@@ -19,9 +19,9 @@ describe("Node Server Request Listener Function", function() {
     var req = new stubs.Request("http://127.0.0.1:8080/", "GET");
     handler.handleRequest(req, res);
     async(function(){
-      expect(res.responseCode).toEqual(200);
-      expect(res.data).toMatch(/<input/); // the resulting html should have an input tag
-      expect(res.ended).toEqual(true);
+      expect(res._responseCode).toEqual(200);
+      expect(res._data).toMatch(/<input/); // the resulting html should have an input tag
+      expect(res._ended).toEqual(true);
     });
   });
 
@@ -30,9 +30,9 @@ describe("Node Server Request Listener Function", function() {
     var req = new stubs.Request("http://127.0.0.1:8080/" + fixtureName, "GET");
     handler.handleRequest(req, res);
     async(function(){
-      expect(res.responseCode).toEqual(200);
-      expect(res.data).toMatch(/google/); // the resulting html should have the text "google"
-      expect(res.ended).toEqual(true);
+      expect(res._responseCode).toEqual(200);
+      expect(res._data).toMatch(/google/); // the resulting html should have the text "google"
+      expect(res._ended).toEqual(true);
     })
   });
 
@@ -45,17 +45,17 @@ describe("Node Server Request Listener Function", function() {
     handler.handleRequest(req, res);
 
     var fileContents = fs.readFileSync(handler.datadir);
-    expect(res.responseCode).toEqual(302);
+    expect(res._responseCode).toEqual(302);
     expect(fileContents).toEqual(url + "\n");
-    expect(res.ended).toEqual(true);
+    expect(res._ended).toEqual(true);
   });
 
   it("Should 404 when asked for a nonexistent file", function() {
     var req = new stubs.Request("http://127.0.0.1:8080/arglebargle", "GET");
     handler.handleRequest(req, res);
     async(function() {
-      expect(res.responseCode).toEqual(404);
-      expect(res.ended).toEqual(true);
+      expect(res._responseCode).toEqual(404);
+      expect(res._ended).toEqual(true);
     });
   });
 

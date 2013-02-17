@@ -24,19 +24,19 @@ exports.Request = function(url, method, postdata) {
 };
 
 exports.Response = function() {
-  this.ended = false;
-  this.responseCode = null;
-  this.headers = null;
-  this.data = null;
+  this._ended = false;
+  this._responseCode = null;
+  this._headers = null;
+  this._data = null;
   var self = this;
   this.writeHead = function(responseCode, headers) {
     console.log("WriteHead called with " + responseCode);
-    self.responseCode = responseCode;
-    self.headers = headers;
+    self._responseCode = responseCode;
+    self._headers = headers;
   }
   this.end = function(data) {
     console.log("Response.end called.");
-    self.ended = true;
-    self.data = data;
+    self._ended = true;
+    self._data = data;
   }
 };
