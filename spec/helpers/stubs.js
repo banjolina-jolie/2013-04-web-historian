@@ -41,12 +41,6 @@ exports.Response = function() {
   }
 };
 
-exports.FileWriteStream = function(){
-  this.write = function(data){
-    this.data = data;
-  }
-};
-
 exports.FileReadStream = function(streamData){
   this.addListener = this.on = function(e, cb){
     if(e === "data"){

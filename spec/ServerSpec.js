@@ -1,4 +1,5 @@
 var handler = require("../web/request-handler");
+handler.datadir = __dirname + "testdata/sites.txt";
 var stubs = require("./helpers/stubs");
 var res;
 
@@ -36,12 +37,16 @@ describe("Node Server Request Listener Function", function() {
   });
 
   it("Should accept posts to /", function() {
+    fs.writeFileSync(handler.datadir, ""); // reset the test file
+
     var url = "www.example.com";
     var req = new stubs.Request("http://127.0.0.1:8080/", "POST", {url: url});
-    var output = new stubs.FileWriteStream();
-    handler.handleRequest(req, res, output);
+
+    handler.handleRequest(req, res);
+
+    var fileContents = fs.readFileSync(handler.datadir);
     expect(res.responseCode).toEqual(302);
-    expect(output.data).toEqual(url + "\n");
+    expect(fileContents).toEqual(url + "\n");
     expect(res.ended).toEqual(true);
   });
 
