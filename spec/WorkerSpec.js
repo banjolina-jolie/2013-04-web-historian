@@ -1,4 +1,4 @@
-var stubs = require("../specHelpers/stubs");
+var stubs = require("./helpers/stubs");
 var htmlFetcherHelpers = require("../workers/lib/html-fetcher-helpers");
 
 describe("html fetcher helpers", function(){

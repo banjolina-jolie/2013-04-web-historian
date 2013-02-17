@@ -1,5 +1,5 @@
 var handler = require("../web/request-handler");
-var stubs = require("../specHelpers/stubs");
+var stubs = require("./helpers/stubs");
 var res;
 
 // allows us to run tests async
