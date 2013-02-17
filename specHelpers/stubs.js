@@ -6,7 +6,7 @@ exports.Request = function(url, method, postdata) {
     //ignore
   };
   var self = this;
-  this.addListener = function(type, callback) {
+  this.addListener = this.on = function(type, callback) {
     if (type == "data") {
       // turn postdata (dictionary object) into raw postdata
       // raw postdata looks like this:
@@ -48,7 +48,7 @@ exports.FileWriteStream = function(){
 };
 
 exports.FileReadStream = function(streamData){
-  this.on = function(e, cb){
+  this.addListener = this.on = function(e, cb){
     if(e === "data"){
       cb(streamData);
     } else if(e === "end"){
