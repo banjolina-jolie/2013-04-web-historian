@@ -2,3 +2,6 @@ body {
   margin : 0px;
   font-family: arial, sans-serif;
 }
+label, input {
+  display:block;
+}

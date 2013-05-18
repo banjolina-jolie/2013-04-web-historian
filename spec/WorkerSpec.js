@@ -3,9 +3,11 @@ var htmlFetcherHelpers = require("../workers/lib/html-fetcher-helpers");
 var fs = require("fs");
 
 describe("html fetcher helpers", function(){
-
+  var urlArray;
+  beforeEach(function(){
+    urlArray = ["example1.com", "example2.com"];
+  });
   it("should have a 'readUrls' function", function(){
-    var urlArray = ["example1.com", "example2.com"];
 
     fs.writeFileSync(__dirname + "/testdata/sites.txt", urlArray.join("\n"));
 
@@ -19,9 +21,11 @@ describe("html fetcher helpers", function(){
       expect(resultArray).toEqual(urlArray);
     });
   });
-  
-  xit("should have a 'downloadUrls' function", function(){
-    var result = htmlFetcherHelpers.downloadUrls();
-    expect(result).toBeTruthy();
+  it("should have a 'downloadUrls' function", function(){
+    var result = htmlFetcherHelpers.downloadUrls(urlArray);
+    waits(2000);
+    runs(function(){
+      expect(result).toBeTruthy();
+    });
   });
 });
