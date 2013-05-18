@@ -33,10 +33,10 @@ exports.Response = function() {
     console.log("WriteHead called with " + responseCode);
     self._responseCode = responseCode;
     self._headers = headers;
-  }
+  };
   this.end = function(data) {
     console.log("Response.end called.");
     self._ended = true;
     self._data = data;
-  }
+  };
 };
