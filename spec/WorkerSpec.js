@@ -10,7 +10,7 @@ describe("html fetcher helpers", function(){
     fs.writeFileSync(__dirname + "/testdata/sites.txt", urlArray.join("\n"));
 
     var resultArray = [];
-    var result = htmlFetcherHelpers.readUrls(urlArray, function(urls){
+    var result = htmlFetcherHelpers.readUrls(__dirname + "/testdata/sites.txt", function(urls){
       resultArray.push(urls);
     });
 

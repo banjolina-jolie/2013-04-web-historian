@@ -44,11 +44,12 @@ describe("Node Server Request Listener Function", function() {
     var req = new stubs.Request("http://127.0.0.1:8080/", "POST", {url: url});
 
     handler.handleRequest(req, res);
-
-    var fileContents = fs.readFileSync(handler.datadir);
-    expect(res._responseCode).toEqual(302);
-    expect(fileContents).toEqual(url + "\n");
-    expect(res._ended).toEqual(true);
+    async(function(){
+      var fileContents = fs.readFileSync(handler.datadir, 'utf8');
+      expect(res._responseCode).toEqual(201);
+      expect(fileContents).toEqual(url + "\n");
+      expect(res._ended).toEqual(true);
+    });
   });
 
   it("Should 404 when asked for a nonexistent file", function() {
