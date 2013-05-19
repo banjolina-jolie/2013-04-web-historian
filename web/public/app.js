@@ -6,7 +6,8 @@ $(document).ready(function(){
         contentType: 'text/plain',
         data: {url: $('#get-page input').val()},
         success: function(data){
-          $('body').append(data);
+          $('#page-container').html(data);
+          $('#get-page input').val('');
         }
       });
     }
@@ -18,7 +19,7 @@ $(document).ready(function(){
         contentType: 'text/plain',
         data: {url: $('#add-page input').val()},
         success: function(data){
-          $('body').append(data);
+          $('#add-page input').val('');
         }
       });
     }

@@ -5,3 +5,12 @@ body {
 label, input {
   display:block;
 }
+#add-page{
+  z-index: 1000000;
+}
+#get-page{
+  z-index: 1000000;
+}
+#page-container{
+  z-index: 1;
+}
